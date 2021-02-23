@@ -8,6 +8,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const browsersync = require('browser-sync');
 const sass = require('gulp-dart-sass');
 const phpConnect = require('gulp-connect-php');
+const terser = require('gulp-terser');
 
 const distFolder = './dist/';
 const srcFolder = './src/';
@@ -138,6 +139,7 @@ function js() {
     gulp
       .src(paths.js.src, { since: gulp.lastRun(js) })
       .pipe(plumber())
+      .pipe(terser())
       .pipe(gulp.dest(paths.js.dest))
       .pipe(browsersync.stream())
   );
